@@ -18,7 +18,7 @@
         position: absolute; /* absolute: means remove from normal flow of arrangement */
         width: 30vw; /* 30% of screen width to match window size*/      
         height: 110vh; /* taller than screen to match window size*/          
-        top: 80%;
+        top: 83%;
         transform: translate(-50%, -50%);
         background-image: url("Window.jpeg");
         background-repeat: repeat-x; /*repeats image side by side- horizontally */
