@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inside Your Mind</title>
+  <!-- Previous stylesheet URL retained for reference: <link rel="stylesheet" href="play.css?layout=color-balls-v1"> -->
+  <link rel="stylesheet" href="play.css?layout=color-balls-v2">
+</head>
+
+<body>
+  <div id="movie">
+
+    <img data-src="play-once/1. alarm.gif" class="scene">
+    <img data-src="play-once/2. together_alarm.gif" class="scene">
+    <img data-src="play-once/3. anger get ready.gif" class="scene">
+    <img data-src="play-once/4. anger prep.gif" class="scene">
+    <img data-src="play-once/5. anger start.gif" class="scene">
+    <img data-src="play-once/6. anger fire.gif" class="scene">
+    <img data-src="play-once/7. disgust enter.gif" class="scene">
+    <img data-src="play-once/8. disgust start.gif" class="scene">
+    <img data-src="play-once/9. disgust panel.gif" class="scene">
+    <img data-src="play-once/10. sadness coming in.gif" class="scene">
+    <img data-src="play-once/11. fear trying out.gif" class="scene">
+    <img data-src="play-once/12. fear-running.gif" class="scene">
+    <img data-src="play-once/13. fear faint.gif" class="scene">
+    <img data-src="play-once/14. AHHH.gif" class="scene">
+    <section id="whack-game" aria-label="Whack-a-mole game">
+      <div id="whack-score" aria-label="Current score and target">
+        <span class="score-label">SCORE</span>
+        <strong id="score-value">0</strong>
+        <span class="score-target">/ 45</span>
+        <span id="difficulty-label" class="difficulty-label">EASY</span>
+        <span class="score-instructions">+1 hit / -1 miss</span>
+      </div>
+      <div class="ball-targets" aria-label="Six colorful ball targets">
+        <button class="ball-target" type="button" data-hole="0" aria-label="Ball target 1, empty" aria-pressed="false"><span class="ball-gem" aria-hidden="true"></span></button>
+        <button class="ball-target" type="button" data-hole="1" aria-label="Ball target 2, empty" aria-pressed="false"><span class="ball-gem" aria-hidden="true"></span></button>
+        <button class="ball-target" type="button" data-hole="2" aria-label="Ball target 3, empty" aria-pressed="false"><span class="ball-gem" aria-hidden="true"></span></button>
+        <button class="ball-target" type="button" data-hole="3" aria-label="Ball target 4, empty" aria-pressed="false"><span class="ball-gem" aria-hidden="true"></span></button>
+        <button class="ball-target" type="button" data-hole="4" aria-label="Ball target 5, empty" aria-pressed="false"><span class="ball-gem" aria-hidden="true"></span></button>
+        <button class="ball-target" type="button" data-hole="5" aria-label="Ball target 6, empty" aria-pressed="false"><span class="ball-gem" aria-hidden="true"></span></button>
+      </div>
+      <span id="game-status" class="visually-hidden" aria-live="polite"></span>
+    </section>
+</div>
+  <script src="states.js"></script>
+  <!-- Previous script URL retained for reference: <script src="play.js?mode=color-balls-v5"></script> -->
+  <!-- Previous difficulty script retained for reference: <script src="play.js?mode=difficulty-v4"></script> -->
+  <script src="play.js?mode=difficulty-v5"></script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>How to Play | Inside Your Mind</title>
+	<link rel="stylesheet" href="rules.css">
+</head>
+<body>
+	<main class="rules-page">
+		<header class="rules-header">
+			<p class="eyebrow">INSLED OUT</p>
+			<h1>How to play</h1>
+			<p class="intro">Tap the colorful balls while the animated round plays.</p>
+		</header>
+
+		<section class="rules-table" aria-label="Game rules">
+			<div class="rule-row">
+				<span class="rule-number">01</span>
+				<div>
+					<h2>Use one hand</h2>
+					<p>Use one hand to tap a glowing ball in the six-target row. More than one ball can appear at a time.</p>
+				</div>
+			</div>
+			<div class="rule-row">
+				<span class="rule-number">02</span>
+				<div>
+					<h2>Play for 30 seconds</h2>
+					<p>Easy shows one ball at a time for 2 seconds. Hard shows a random group of two or three balls for 1.8 seconds. The next wave waits until the current one clears, then pauses briefly. A correct tap adds one point; an empty tap or expired ball removes one point.</p>
+				</div>
+			</div>
+			<div class="rule-row">
+				<span class="rule-number">03</span>
+				<div>
+					<h2>Win with your difficulty target</h2>
+					<p>Reach 10 points on Easy or 20 on Hard before the video ends. A lower score is a loss; the result is automatic.</p>
+				</div>
+			</div>
+			<div class="rule-row prize-row">
+				<span class="rule-number">04</span>
+				<div>
+					<h2>Your score goes on the leaderboard</h2>
+					<p>Your name, university, difficulty, score, and result are saved in this browser.</p>
+				</div>
+			</div>
+		</section>
+
+		<p class="demo-note">This browser-only game is modified for demonstration purposes. It simulates the original ESP32 hardware interaction, so anyone can play without a separate device.</p>
+		<!-- Previous prize rule retained but retired from the simulation: <h2>Take home the Bing Bong Trophy</h2> -->
+		<nav class="rules-actions" aria-label="Rules navigation">
+			<button type="button" onclick="setState(STATES.IDLE)">Back to home</button>
+			<button type="button" class="secondary" onclick="setState(STATES.LEADERBOARD)">Leaderboard</button>
+		</nav>
+	</main>
+	<script src="states.js"></script>
+</body>
+</html>

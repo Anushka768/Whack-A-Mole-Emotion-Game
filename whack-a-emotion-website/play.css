@@ -1,0 +1,292 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: var(--vh);
+  background: black;
+  overflow: hidden;
+}
+
+#movie {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* one scene visible at a time*/
+.scene {
+  position: absolute;
+  inset: 0;               
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  
+  background:black;    
+  opacity: 0;/* hidden by default */
+  transition: opacity 1.0s ease-in-out;
+}
+
+.scene.active {
+  opacity: 1;
+}
+
+/* Standalone demo mode: style the local outcome prompt shown after the movie. */
+/* Keep the choices in a compact overlay so the movie stays visible and plays. */
+#outcome-prompt {
+  position: fixed;
+  z-index: 2;
+  top: 8px;
+  left: 0;
+  right: 0;
+  display: grid;
+  justify-items: center;
+  padding: 0 8px;
+  pointer-events: none;
+  color: #fff;
+  font-family: 'Andale Mono', monospace;
+}
+
+.outcome-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(18, 18, 18, 0.58);
+  backdrop-filter: blur(3px);
+  pointer-events: auto;
+}
+
+.outcome-panel h1 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.outcome-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.outcome-options button {
+  min-height: 30px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.outcome-options button:hover,
+.outcome-options button:focus-visible {
+  background: #d8ff64;
+  outline: 2px solid #d8ff64;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .outcome-panel {
+    gap: 5px;
+    padding: 5px 6px;
+  }
+
+  .outcome-options {
+    gap: 4px;
+  }
+
+  .outcome-options button {
+    min-height: 28px;
+    padding: 4px 6px;
+    font-size: 0.68rem;
+  }
+}
+
+/* Standalone game controls: a compact bottom strip keeps the movie visible. */
+#whack-game {
+  position: fixed;
+  z-index: 3;
+  right: 0;
+  bottom: max(8px, env(safe-area-inset-bottom));
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  width: min(calc(100vw - 24px), 620px);
+  margin: 0 auto;
+  padding: 8px 12px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  background: rgba(12, 16, 17, 0.78);
+  color: #fff;
+  font-family: 'Andale Mono', monospace;
+  pointer-events: none;
+  backdrop-filter: blur(3px);
+}
+
+#whack-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.score-label {
+  color: #d8ff64;
+  font-size: 0.72rem;
+}
+
+#score-value {
+  min-width: 1.5em;
+  font-size: 1.1rem;
+  text-align: right;
+}
+
+.score-target {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.difficulty-label {
+  padding: 2px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  color: #fff;
+  font-size: 0.62rem;
+}
+
+.score-instructions {
+  margin-left: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.68rem;
+}
+
+#whack-score.score-target-reached #score-value {
+  color: #d8ff64;
+}
+
+.ball-targets {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: clamp(6px, 2vw, 18px);
+  width: min(100%, 560px);
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+.ball-target {
+  display: grid;
+  place-items: center;
+  width: clamp(42px, 8vw, 62px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.ball-gem {
+  display: block;
+  width: clamp(32px, 6vw, 46px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  opacity: 0.52;
+  transform: scale(0.82);
+  transition: opacity 140ms ease, transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+}
+
+.ball-target:nth-child(1) .ball-gem {
+  background: radial-gradient(circle at 32% 26%, #fff3b0 0, #ffd23f 33%, #d89005 100%);
+}
+
+.ball-target:nth-child(2) .ball-gem {
+  background: radial-gradient(circle at 32% 26%, #d7fff0 0, #39d9a7 35%, #098269 100%);
+}
+
+.ball-target:nth-child(3) .ball-gem {
+  background: radial-gradient(circle at 32% 26%, #ffe0e8 0, #ff678d 35%, #bd2858 100%);
+}
+
+.ball-target:nth-child(4) .ball-gem {
+  background: radial-gradient(circle at 32% 26%, #e5eeff 0, #729cff 35%, #374dc1 100%);
+}
+
+.ball-target:nth-child(5) .ball-gem {
+  background: radial-gradient(circle at 32% 26%, #ffe1cb 0, #ff914d 35%, #c74a21 100%);
+}
+
+.ball-target:nth-child(6) .ball-gem {
+  background: radial-gradient(circle at 32% 26%, #f3e4ff 0, #be7aff 35%, #7133b4 100%);
+}
+
+.ball-target.ball-active {
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.ball-target.ball-active .ball-gem {
+  opacity: 1;
+  filter: saturate(1.2) brightness(1.12);
+  transform: scale(1.16);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.22), 0 0 22px currentColor;
+}
+
+.ball-target:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 360px) {
+  #whack-game {
+    gap: 5px;
+    padding: 7px 8px 8px;
+  }
+
+  #whack-score {
+    gap: 4px;
+    font-size: 0.72rem;
+  }
+
+  .score-instructions {
+    margin-left: 3px;
+    font-size: 0.62rem;
+  }
+
+  .difficulty-label {
+    font-size: 0.56rem;
+  }
+
+  .ball-target {
+    width: 38px;
+  }
+
+  .ball-gem {
+    width: 30px;
+  }
+}
