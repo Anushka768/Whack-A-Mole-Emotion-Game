@@ -2,6 +2,10 @@
 
 An emotion-themed arcade game with an interactive browser demo and ESP32 firmware for a physical prototype. The project explores fast reaction gameplay, embedded systems, and a web experience that recreates the feel of playing the arcade game.
 
+## Play online
+
+Play the live GitHub Pages demo: [Whack-A-Mole: Inside Out Edition](https://anushka768.github.io/Whack-A-Mole-Emotion-Game/whack-a-emotion-website/homepage.html).
+
 ## Project overview
 
 The browser version plays a sequence of animated scenes while six colorful on-screen targets appear for the player to tap. It includes player setup, Easy and Hard difficulties, automatic scoring and results, rules, and a leaderboard.
