@@ -5,12 +5,14 @@ An emotion-themed arcade game with an interactive browser demo and ESP32 firmwar
 ## Play online
 
 Play the live GitHub Pages demo: [Whack-A-Mole: Inside Out Edition](https://anushka768.github.io/Whack-A-Mole-Emotion-Game/whack-a-emotion-website/homepage.html).
-### Gameplay videos
+
+## Gameplay videos
 
 Watch the physical game demonstrations at two difficulty levels:
 
 - [Watch medium-level gameplay on YouTube](https://www.youtube.com/watch?v=Ch7rrBap1OI)
 - [Watch hard-level gameplay on YouTube](https://www.youtube.com/watch?v=i5hrfq9jv-M)
+  
 ## From prototype to final product
 
 ### 1. Prototype
